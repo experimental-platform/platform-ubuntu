@@ -13,8 +13,6 @@ RUN apt-get update && \
     apt-get -y install --no-install-recommends \
     unzip build-essential curl software-properties-common tar unzip wget git locales && \
     localedef -i de_DE -c -f UTF-8 -A /usr/share/locale/locale.alias de_DE.UTF-8 && \
-    add-apt-repository -y ppa:canonical-kernel-team/ppa && \
-    apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
