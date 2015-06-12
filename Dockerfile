@@ -1,10 +1,18 @@
-# VERSION 0.1
-
-FROM ubuntu:14.04
-ENV DEBIAN_FRONTEND noninteractive
-
+FROM ubuntu:15.04
 # Activate the multiverse
-RUN sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list
+# RUN sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.lists
+ENV container docker
+ENV DEBIAN_FRONTEND noninteractive
+RUN echo 'APT::Install-Recommends "0"; \n\
+APT::Get::Assume-Yes "true"; \n\
+APT::Get::force-yes "true"; \n\
+APT::Install-Suggests "0";' > /etc/apt/apt.conf.d/01buildconfig
+RUN mkdir -p  /etc/apt/sources.d/
+RUN echo "deb mirror://mirrors.ubuntu.com/mirrors.txt vivid main restricted universe multiverse \n\
+deb mirror://mirrors.ubuntu.com/mirrors.txt vivid-updates main restricted universe multiverse \n\
+deb mirror://mirrors.ubuntu.com/mirrors.txt vivid-backports main restricted universe multiverse \n\
+deb mirror://mirrors.ubuntu.com/mirrors.txt vivid-security main restricted universe multiverse" > /etc/apt/sources.d/ubuntu-mirrors.list
+
 
 # Update to latest packages
 # make the "de_DE.UTF-8" locale so postgres will be utf-8 enabled by default and further installations work as expected.
