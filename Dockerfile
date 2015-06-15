@@ -14,7 +14,7 @@ deb mirror://mirrors.ubuntu.com/mirrors.txt vivid-security main restricted unive
 RUN apt-get update && \
     apt-get -y upgrade && \
     apt-get -y install --no-install-recommends \
-    sudo unzip build-essential curl software-properties-common tar unzip wget git locales && \
+    sudo nc unzip build-essential curl software-properties-common tar unzip wget git locales && \
     localedef -i de_DE -c -f UTF-8 -A /usr/share/locale/locale.alias de_DE.UTF-8 && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
