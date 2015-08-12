@@ -4,7 +4,7 @@ machine:
 
 dependencies:
   override:
-    - docker build -t experimentalplatform/ubuntu:$CIRCLE_BRANCH .
+    - docker build --force-rm --no-cache --pull -t experimentalplatform/ubuntu:$CIRCLE_BRANCH .
 
 test:
   override:
