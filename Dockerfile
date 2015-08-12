@@ -15,9 +15,14 @@ RUN apt-get update && \
     apt-get -y upgrade && \
     apt-get -y install --no-install-recommends \
     sudo netcat unzip build-essential curl software-properties-common tar unzip wget git locales && \
-    localedef -i de_DE -c -f UTF-8 -A /usr/share/locale/locale.alias de_DE.UTF-8 && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
+
+# TODO: Re-enable once Ubuntu gets its shit together
+# See: https://bugs.launchpad.net/ubuntu/+source/apparmor/+bug/969299
+# RUN localedef -i de_DE -c -f UTF-8 -A /usr/share/locale/locale.alias de_DE.UTF-8
+# RUN update-locale LANG=de_DE.utf8
+RUN locale-gen de_DE.utf8
 
 #
 # Set local timezone
@@ -30,8 +35,6 @@ RUN dpkg-reconfigure tzdata
 # ENV LC_ALL de_DE.utf8
 # ENV LANG de_DE.utf8
 # ENV LANGUAGE de_DE.utf8
-RUN locale-gen de_DE.utf8
-RUN update-locale LANG=de_DE.utf8
 
 ENV HOME /root
 WORKDIR /
