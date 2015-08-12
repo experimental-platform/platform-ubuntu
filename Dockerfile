@@ -18,7 +18,9 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-RUN localedef -i de_DE -c -f UTF-8 -A /usr/share/locale/locale.alias de_DE.UTF-8
+# TODO: Re-enable once Ubuntu gets its shit together
+# See: https://bugs.launchpad.net/ubuntu/+source/apparmor/+bug/969299
+# RUN localedef -i de_DE -c -f UTF-8 -A /usr/share/locale/locale.alias de_DE.UTF-8
 
 #
 # Set local timezone
