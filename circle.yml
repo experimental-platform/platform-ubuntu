@@ -18,9 +18,9 @@ deployment:
       - docker push experimentalplatform/ubuntu:$CIRCLE_BRANCH
       - |
         if [[ ${TRIGGER} == "true" ]]; then
-          for project in platform_app_manager; do
+          for project in platform_app_manager platform-central-gateway platform_configure platform_dokku platform_frontend platform_hostname_avahi platform_hostname_smb platform_monitoring platform-ptw platform_skvs platform_systemd_proxy; do
             echo "URL: https://circleci.com/api/v1/project/experimental-platform/$(sed s/_/-/g <<< ${project})/tree/development?circle-token=${!project}"
-            curl --header "Content-Type: application/json" \
+            curl -f --header "Content-Type: application/json" \
             --data "{\"build_parameters\": {\"TRIGGER\": true}}" --request POST \
             "https://circleci.com/api/v1/project/experimental-platform/$(sed s/_/-/g <<< ${project})/tree/development?circle-token=${!project}"
           done
