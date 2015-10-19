@@ -17,6 +17,6 @@ script:
           -H "Travis-API-Version: 3" \
           -H "Authorization: token $TRAVIS_TOKEN" \
           -d "$BODY" \
-          https://api.travis-ci.org/repo/travis-ci%2Ftravis-core/requests
+          https://api.travis-ci.org/repo/experimental-platform%2F${project}/requests
       done
     fi
