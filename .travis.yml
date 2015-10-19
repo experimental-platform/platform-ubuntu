@@ -8,10 +8,10 @@ script:
   - |
     if [[ ${TRIGGER} == "true" ]]; then
       for project in platform_app_manager platform-central-gateway platform_configure platform_dokku platform_frontend platform_hostname_avahi platform_hostname_smb platform_monitoring platform-ptw platform_skvs platform_systemd_proxy; do
-  		  BODY='{ "request": {"TRIGGER":"true"}}'
+        BODY='{ "request": {"TRIGGER":"true"}}'
         echo "URL: https://api.travis-ci.org/repo/travis-ci%2Ftravis-core/requests"
-				echo "BODY: $BODY"
-				curl -f -s -X POST \
+        echo "BODY: $BODY"
+        curl -f -s -X POST \
           -H "Content-Type: application/json" \
           -H "Accept: application/json" \
           -H "Travis-API-Version: 3" \
