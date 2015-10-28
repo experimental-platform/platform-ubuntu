@@ -26,6 +26,8 @@ script:
             -H "Authorization: token $TRAVIS_TOKEN" \
             -d "$BODY" \
             $URL
+
+          echo "Triggered experimental-platform/$project"
         done
       fi
     fi
