@@ -4,7 +4,7 @@ services:
 script:
   - docker build --force-rm --no-cache --pull -t experimentalplatform/ubuntu:$TRAVIS_BRANCH .
   - |
-    if [[ "$TRAVIS_BRANCH" == "master" ]]; then
+    if [[ "$TRAVIS_BRANCH" == "latest" ]]; then
       docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
       docker push experimentalplatform/ubuntu:$CIRCLE_BRANCH
 
