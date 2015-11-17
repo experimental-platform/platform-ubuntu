@@ -9,7 +9,7 @@ script:
 
     if [[ "$TRAVIS_BRANCH" == "latest" ]]; then
       docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-      docker push experimentalplatform/ubuntu:$CIRCLE_BRANCH
+      docker push experimentalplatform/ubuntu:$TRAVIS_BRANCH
 
       if [[ ${TRIGGER} == "true" ]]; then
         for project in platform_app_manager platform-central-gateway platform_configure platform_dokku platform_frontend platform_hostname_avahi platform_hostname_smb platform_monitoring platform-ptw platform_skvs platform_systemd_proxy; do
