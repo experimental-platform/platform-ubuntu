@@ -17,7 +17,7 @@ if [[ "$TRAVIS_BRANCH" == "latest" ]]; then
       }}}}"
       echo "URL: $URL"
       echo "BODY: $BODY"
-      curl -f -s -X POST \
+      curl -s -X POST \
         -H "Content-Type: application/json" \
         -H "Accept: application/json" \
         -H "Travis-API-Version: 3" \
