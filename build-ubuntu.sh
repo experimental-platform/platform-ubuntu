@@ -17,13 +17,17 @@ if [[ "$TRAVIS_BRANCH" == "latest" ]]; then
       }}}}"
       echo "URL: $URL"
       echo "BODY: $BODY"
-      curl -s -X POST \
+      STATUSCODE=$(curl -s -i -X POST --output /dev/stderr --write-out "%{http_code}" \
         -H "Content-Type: application/json" \
         -H "Accept: application/json" \
         -H "Travis-API-Version: 3" \
         -H "Authorization: token $TRAVIS_TOKEN" \
         -d "$BODY" \
-        $URL
+        $URL)
+
+      if test $STATUSCODE -ne 202; then
+        exit 1
+      fi
 
       echo "Triggered experimental-platform/$project"
     done
