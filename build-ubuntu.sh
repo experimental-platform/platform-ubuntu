@@ -30,6 +30,7 @@ if [[ "$TRAVIS_BRANCH" == "latest" ]]; then
       fi
 
       echo "Triggered experimental-platform/$project"
+      sleep 5
     done
   fi
 fi
