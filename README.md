@@ -8,6 +8,6 @@ This is a component of the experimental platform. To read more about it please g
 
 ## Branch: Latest
 
-[![Circle CI](https://circleci.com/gh/experimental-platform/platform-ubuntu.svg?style=svg&circle-token=569b379c9207dce593d9d4b9b7519ed3d5559c03)](https://circleci.com/gh/experimental-platform/platform-ubuntu)
+[![Build Status](https://travis-ci.org/experimental-platform/platform-ubuntu.svg?branch=latest)](https://travis-ci.org/experimental-platform/platform-ubuntu)
 
 All development branches stem from and (re-)integrate here. Additionally this is the base for all releases.
