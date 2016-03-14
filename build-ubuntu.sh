@@ -2,7 +2,8 @@
 
 set -eu
 
-if [[ "$TRAVIS_BRANCH" == "latest" ]]; then
+# only branch latest and no pull requuest builds are deployed
+if [[ "${TRAVIS_BRANCH}" == "latest" ]] && [[ "${TRAVIS_PULL_REQUEST}" == "false" ]] ; then
   docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
   docker push experimentalplatform/ubuntu:$TRAVIS_BRANCH
 
