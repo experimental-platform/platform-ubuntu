@@ -1,6 +1,7 @@
 FROM ubuntu:15.04
 # Activate the multiverse
 # RUN sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.lists
+ENV DEBIAN_FRONTEND noninteractive
 ENV container docker
 RUN mkdir -p  /etc/apt/sources.d/
 RUN echo "deb mirror://mirrors.ubuntu.com/mirrors.txt vivid main restricted universe multiverse \n\
@@ -17,6 +18,9 @@ RUN apt-get update && \
     sudo netcat unzip curl software-properties-common tar unzip wget git locales && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
+
+RUN wget -O /usr/local/bin/dumb-init https://github.com/Yelp/dumb-init/releases/download/v1.0.0/dumb-init_1.0.0_amd64 && \
+    chmod +x /usr/local/bin/dumb-init
 
 # TODO: Re-enable once Ubuntu gets its shit together
 # See: https://bugs.launchpad.net/ubuntu/+source/apparmor/+bug/969299
