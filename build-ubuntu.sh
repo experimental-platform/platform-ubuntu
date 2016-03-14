@@ -7,7 +7,7 @@ if [[ "$TRAVIS_BRANCH" == "latest" ]]; then
   docker push experimentalplatform/ubuntu:$TRAVIS_BRANCH
 
   if [[ ${TRIGGER:-false} == "true" ]]; then
-    for project in platform-app-manager platform-central-gateway platform-configure platform-dokku platform-frontend platform-hostname-avahi platform-hostname-smb platform-monitoring platform-ptw platform-skvs platform-systemd-proxy platform-pulseaudio platform-hardware; do
+    for project in platform-app-manager platform-central-gateway platform-configure platform-dnsmasq platform-dokku platform-frontend platform-hardware platform-hostapd platform-hostname-avahi platform-hostname-smb platform-monitoring platform-ptw platform-pulseaudio platform-skvs platform-smb platform-systemd-proxy; do
       URL="https://api.travis-ci.org/repo/experimental-platform%2F${project}/requests"
       BODY="{ \"request\": {
         \"message\": \"Triggered by '$TRAVIS_REPO_SLUG'\",
