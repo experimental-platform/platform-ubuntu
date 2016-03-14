@@ -6,4 +6,5 @@ install:
 script:
   - docker run --rm experimentalplatform/ubuntu:$TRAVIS_BRANCH "/usr/local/bin/dumb-init -V"
   - docker run --rm experimentalplatform/ubuntu:$TRAVIS_BRANCH "grep 'Europe/Berlin' /etc/timezone > /dev/null"
+after_success:
   - ./build-ubuntu.sh
