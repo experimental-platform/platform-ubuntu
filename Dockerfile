@@ -31,7 +31,7 @@ RUN locale-gen de_DE.utf8
 #
 # Set local timezone
 #
-RUN echo "Europe/Berlin" > /etc/timezone
+RUN rm /etc/localtime; ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
 RUN dpkg-reconfigure tzdata
 
 # Set environment variables.
