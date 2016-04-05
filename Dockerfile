@@ -1,4 +1,4 @@
-FROM ubuntu:15.04
+FROM ubuntu:xenial
 # Activate the multiverse
 # RUN sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.lists
 ENV DEBIAN_FRONTEND noninteractive
