@@ -4,10 +4,10 @@ FROM ubuntu:xenial
 ENV DEBIAN_FRONTEND noninteractive
 ENV container docker
 RUN mkdir -p  /etc/apt/sources.d/
-RUN echo "deb mirror://mirrors.ubuntu.com/mirrors.txt vivid main restricted universe multiverse \n\
-deb mirror://mirrors.ubuntu.com/mirrors.txt vivid-updates main restricted universe multiverse \n\
-deb mirror://mirrors.ubuntu.com/mirrors.txt vivid-backports main restricted universe multiverse \n\
-deb mirror://mirrors.ubuntu.com/mirrors.txt vivid-security main restricted universe multiverse" > /etc/apt/sources.d/ubuntu-mirrors.list
+RUN echo "deb mirror://mirrors.ubuntu.com/mirrors.txt xenial main restricted universe multiverse \n\
+deb mirror://mirrors.ubuntu.com/mirrors.txt xenial-updates main restricted universe multiverse \n\
+deb mirror://mirrors.ubuntu.com/mirrors.txt xenial-backports main restricted universe multiverse \n\
+deb mirror://mirrors.ubuntu.com/mirrors.txt xenial-security main restricted universe multiverse" > /etc/apt/sources.d/ubuntu-mirrors.list
 
 
 # Update to latest packages
@@ -24,8 +24,8 @@ RUN wget -O /usr/local/bin/dumb-init https://github.com/Yelp/dumb-init/releases/
 
 # TODO: Re-enable once Ubuntu gets its shit together
 # See: https://bugs.launchpad.net/ubuntu/+source/apparmor/+bug/969299
-# RUN localedef -i de_DE -c -f UTF-8 -A /usr/share/locale/locale.alias de_DE.UTF-8
-# RUN update-locale LANG=de_DE.utf8
+RUN localedef -i de_DE -c -f UTF-8 -A /usr/share/locale/locale.alias de_DE.UTF-8
+RUN update-locale LANG=de_DE.utf8
 RUN locale-gen de_DE.utf8
 
 #
