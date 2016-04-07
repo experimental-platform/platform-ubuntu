@@ -7,7 +7,7 @@ RUN mkdir -p  /etc/apt/sources.d/
 RUN echo "deb mirror://mirrors.ubuntu.com/mirrors.txt xenial main restricted universe multiverse \n\
 deb mirror://mirrors.ubuntu.com/mirrors.txt xenial-updates main restricted universe multiverse \n\
 deb mirror://mirrors.ubuntu.com/mirrors.txt xenial-backports main restricted universe multiverse \n\
-deb mirror://mirrors.ubuntu.com/mirrors.txt xenial-security main restricted universe multiverse" > /etc/apt/sources.d/ubuntu-mirrors.list
+deb mirror://mirrors.ubuntu.com/mirrors.txt xenial-security main restricted universe multiverse" > /etc/apt/sources.list
 
 
 # Update to latest packages
