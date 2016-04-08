@@ -15,7 +15,7 @@ deb mirror://mirrors.ubuntu.com/mirrors.txt xenial-security main restricted univ
 RUN apt-get update && \
     apt-get -y upgrade && \
     apt-get -y install --no-install-recommends \
-    sudo netcat unzip curl software-properties-common tar unzip wget git locales && \
+    sudo netcat unzip curl software-properties-common tar unzip wget git locales iproute2 && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
