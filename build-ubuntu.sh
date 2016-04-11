@@ -16,8 +16,6 @@ if [[ "${TRAVIS_BRANCH}" == "latest" ]] && [[ "${TRAVIS_PULL_REQUEST}" == "false
           \"env\": {
             \"TRIGGER\": \"true\"
       }}}}"
-      echo "URL: $URL"
-      echo "BODY: $BODY"
       STATUSCODE=$(curl -s -i -X POST --output /dev/stderr --write-out "%{http_code}" \
         -H "Content-Type: application/json" \
         -H "Accept: application/json" \
@@ -30,7 +28,7 @@ if [[ "${TRAVIS_BRANCH}" == "latest" ]] && [[ "${TRAVIS_PULL_REQUEST}" == "false
         exit 1
       fi
 
-      echo "Triggered experimental-platform/$project"
+      echo "Triggered experimental-platform/${project}"
       sleep 5
     done
   fi
