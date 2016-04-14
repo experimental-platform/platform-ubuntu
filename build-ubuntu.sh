@@ -4,8 +4,13 @@ set -eu
 
 # only branch latest and no pull requuest builds are deployed
 if [[ "${TRAVIS_BRANCH}" == "latest" ]] && [[ "${TRAVIS_PULL_REQUEST}" == "false" ]] ; then
+  IMG="experimentalplatform/ubuntu:$TRAVIS_BRANCH"
+  echo " * Flattening $IMG"
+  ID=$(docker run -d "$IMG" /bin/bash)
+  docker export $ID | docker import - "$IMG"
+
   docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-  docker push experimentalplatform/ubuntu:$TRAVIS_BRANCH
+  docker push "$IMG"
 
   if [[ ${TRIGGER:-false} == "true" ]]; then
     for project in platform-app-manager platform-central-gateway platform-configure platform-dnsmasq platform-dokku platform-frontend platform-hardware platform-hostapd platform-hostname-avahi platform-hostname-smb platform-monitoring platform-ptw platform-pulseaudio platform-skvs platform-smb platform-systemd-proxy; do
