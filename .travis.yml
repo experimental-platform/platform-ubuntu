@@ -1,10 +1,21 @@
 sudo: false
 services:
   - docker
+before_install:
+  - "curl -L https://github.com/appc/docker2aci/releases/download/v0.9.3/docker2aci-v0.9.3.tar.gz | tar zxf - --strip-components=1"
+  - "wget https://raw.githubusercontent.com/experimental-platform/build-scripts/master/s3-upload.sh && chmod +x s3-upload.sh"
 install:
   - docker build --force-rm --no-cache --pull -t experimentalplatform/ubuntu:$TRAVIS_BRANCH .
+  - docker save experimentalplatform/ubuntu:$TRAVIS_BRANCH > ubuntu.tar
+  - ./docker2aci ubuntu.tar
 script:
   - docker run --rm experimentalplatform/ubuntu:$TRAVIS_BRANCH /usr/local/bin/dumb-init -V
   - docker run --rm experimentalplatform/ubuntu:$TRAVIS_BRANCH grep 'Europe/Berlin' /etc/timezone > /dev/null
-after_success:
-  - ./build-ubuntu.sh
+deploy:
+  provider: script
+  script: ./deploy.sh
+  skip_cleanup: true
+  on:
+    all_branches: true
+    condition: $TRAVIS_PULL_REQUEST == false
+
