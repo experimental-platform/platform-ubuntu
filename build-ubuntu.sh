@@ -3,13 +3,13 @@
 set -eu
 
 # only branch latest and no pull requuest builds are deployed
-if [[ "${TRAVIS_BRANCH}" == "latest" ]] && [[ "${TRAVIS_PULL_REQUEST}" == "false" ]] ; then
-  IMG="experimentalplatform/ubuntu:$TRAVIS_BRANCH"
+if [[ "${TRAVIS_PULL_REQUEST}" == "false" ]] ; then
+  IMG="quay.io/experimentalplatform/ubuntu:$TRAVIS_BRANCH"
   echo " * Flattening $IMG"
   ID=$(docker run -d "$IMG" /bin/bash)
   docker export $ID | docker import - "$IMG"
 
-  docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+  docker login -e 'none' -u $QUAY_USER -p $QUAY_PASS quay.io
   docker push "$IMG"
 
   if [[ ${TRIGGER:-false} == "true" ]]; then
