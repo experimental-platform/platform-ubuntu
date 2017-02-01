@@ -1,10 +1,10 @@
 sudo: false
 services:
   - docker
-install:
-  - docker build --force-rm --no-cache --pull -t quay.io/experimentalplatform/ubuntu:$TRAVIS_BRANCH .
 script:
-  - docker run --rm quay.io/experimentalplatform/ubuntu:$TRAVIS_BRANCH /usr/local/bin/dumb-init -V
-  - docker run --rm quay.io/experimentalplatform/ubuntu:$TRAVIS_BRANCH grep 'Europe/Berlin' /etc/timezone > /dev/null
-after_success:
-  - ./build-ubuntu.sh
+  - docker build --force-rm --no-cache --pull -t quay.io/experimentalplatform/ubuntu:$TRAVIS_BRANCH .
+deploy:
+  - provider: script
+    script: docker login -u "$QUAY_USER" -p "$QUAY_PASS" quay.io && docker push "quay.io/experimentalplatform/ubuntu:$TRAVIS_BRANCH"
+    on:
+      branch: ci
